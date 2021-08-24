@@ -1,0 +1,22 @@
+<?xml version="1.0" ?>
+<robot name="simple_diff_drive" xmlns:xacro="http://ros.org/wiki/xacro">
+
+ <xacro:include filename="$(find simple_diff_drive_simulator)/urdf/body.urdf.xacro" />
+ <xacro:include filename="$(find simple_diff_drive_simulator)/urdf/wheel.urdf.xacro" />
+
+ <xacro:include filename="$(find simple_diff_drive_simulator)/urdf/lidar.urdf.xacro" />
+
+  <gazebo>
+    <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+      <robotNamespace>/simple_diff_drive</robotNamespace>
+      <robotSimType>gazebo_ros_control/DefaultRobotHWSim</robotSimType>
+      <legacyModeNS>true</legacyModeNS>
+    </plugin>
+  </gazebo>
+
+
+ <xacro:wheel rl="r" parent="base_link" />
+ <xacro:wheel rl="l" parent="base_link" />
+
+ <xacro:laser_macro prefix="lidar" parent="base_link" xyz="0.0 0 0.112" />
+</robot>
